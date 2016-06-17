@@ -209,10 +209,7 @@
 
 
         <script>
-            var ballno = Math.floor(Math.random() * 11)+1;
-            var concreteno=Math.floor(Math.random() * 4)+1;
-            var brickno =Math.floor(Math.random() * 10)+1;
-            console.log(ballno, concreteno,brickno);
+            
             var camera         = undefined, 
                 scene          = undefined, 
                 renderer       = undefined, 
@@ -226,9 +223,9 @@
                 ballMesh       = undefined,
                 ballRadius     = 0.25,
                 keyAxis        = [0, 0],
-                ironTexture    = THREE.ImageUtils.loadTexture('balls/'+ballno+'.png'),
-                planeTexture   = THREE.ImageUtils.loadTexture('concretes/'+concreteno+'.png'),
-                brickTexture   = THREE.ImageUtils.loadTexture('bricks/'+brickno+'.png'),
+                ironTexture    = undefined,
+                planeTexture   = undefined,
+                brickTexture   = undefined,
                 gameState      = undefined,
 
             // Box2D shortcuts
@@ -243,8 +240,18 @@
 
             // Box2D world variables 
                 wWorld         = undefined,
-                wBall          = undefined;
+                wBall          = undefined,
+                finalPositionX = undefined,
+                finalPositionY = undefined;
 
+            function createrandomtheme(){
+                var ballno = Math.floor(Math.random() * 11)+1;
+                var concreteno=Math.floor(Math.random() * 4)+1;
+                var brickno =Math.floor(Math.random() * 10)+1;
+                ironTexture    = THREE.ImageUtils.loadTexture('balls/'+ballno+'.png');
+                planeTexture   = THREE.ImageUtils.loadTexture('concretes/'+concreteno+'.png');
+                brickTexture   = THREE.ImageUtils.loadTexture('bricks/'+brickno+'.png');
+            }
             
             function createPhysicsWorld() {
                 // Create the world object.
@@ -315,7 +322,7 @@
                 scene.add(light1);
 
                 var light1= new THREE.PointLight(0xff0000, 1,5,0.1);
-                light1.position.set(mazeDimension-1, mazeDimension-2, 1.3);
+                light1.position.set(finalPositionX, finalPositionY, 1.3);
                 scene.add(light1);
 
                 // Add the ball.
@@ -403,7 +410,14 @@
                         maze = generateSquareMaze(mazeDimension);
                         var dy = Math.floor(Math.random()*mazeDimension);
                         var dx = Math.floor(Math.random()*mazeDimension);
-                        maze[mazeDimension-1][mazeDimension-dy-1] = false;
+
+                        finalPositionX = mazeDimension-1
+                        finalPositionY = mazeDimension-dy-1
+                        maze[finalPositionX][finalPositionY] = false;
+                        maze[finalPositionX-1][finalPositionY] = false;
+                        createrandomtheme();
+
+                        
                         createPhysicsWorld();
                         createRenderWorld();
                         camera.position.set(1, 1, 5);
