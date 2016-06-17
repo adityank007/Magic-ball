@@ -10,6 +10,204 @@
         <script src="jquery.js"></script>
         <script src="maze.js"></script>
 
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="timer.js" ></script>
+      
+    <style type="text/css">
+      #time{
+        position: absolute;
+        top:0px;
+        right: 0px;
+        font-family: 'Lobster', cursive;
+        /*font-family: 'Pacifico';*/
+        font-size: 60px;
+        float: right;
+        margin-right: 1%;
+        /*color: #0288D1;*/
+        color: #D50000;
+      }
+
+
+    .heart {
+        font-size: 152px;
+        text-align: center;
+        color: rgba(165, 25, 25, 1);
+        padding: 0;
+        margin: 0;
+    }
+
+    .pulse1 {
+        -webkit-animation: pulse1 1s linear infinite;
+        -moz-animation: pulse1 1s linear infinite;
+        -ms-animation: pulse1 1s linear infinite;
+        animation: pulse1 1s linear infinite;
+    }
+
+    @keyframes "pulse1" {
+     0% {
+        color: rgba(165, 25, 25, 1);
+     }
+     90% {
+        color: rgba(255,0,0,0.0);
+     }
+     100% {
+        color: rgba(255,0,0,1.0);
+     }
+
+    }
+
+    @-moz-keyframes pulse1 {
+     0% {
+       color: rgba(165, 25, 25, 1);
+     }
+     90% {
+       color: rgba(255,0,0,0.0);
+     }
+     100% {
+       color: rgba(255,0,0,1.0);
+     }
+
+    }
+
+    @-webkit-keyframes "pulse1" {
+     0% {
+       color: rgba(165, 25, 25, 1);
+     }
+     90% {
+       color: rgba(255,0,0,0.0);
+     }
+     100% {
+       color: rgba(255,0,0,1.0);
+     }
+
+    }
+
+    @-ms-keyframes "pulse1" {
+     0% {
+       color: rgba(165, 25, 25, 1);
+     }
+     90% {
+       color: rgba(255,0,0,0.0);
+     }
+     100% {
+       color: rgba(255,0,0,1.0);
+     }
+
+    }
+
+    .pulse2 {
+        -webkit-animation: pulse2 1s linear infinite;
+        -moz-animation: pulse2 1s linear infinite;
+        -ms-animation: pulse2 1s linear infinite;
+        animation: pulse2 1s linear infinite;
+    }
+
+    @keyframes "pulse2" {
+     0% {
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -o-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+     }
+     50% {
+        -webkit-transform: scale(0.8);
+        -moz-transform: scale(0.8);
+        -o-transform: scale(0.8);
+        -ms-transform: scale(0.8);
+        transform: scale(0.8);
+     }
+     100% {
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -o-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+     }
+
+    }
+
+    @-moz-keyframes pulse2 {
+     0% {
+       -moz-transform: scale(1.1);
+       transform: scale(1.1);
+     }
+     50% {
+       -moz-transform: scale(0.8);
+       transform: scale(0.8);
+     }
+     100% {
+       -moz-transform: scale(1);
+       transform: scale(1);
+     }
+
+    }
+
+    @-webkit-keyframes "pulse2" {
+     0% {
+       -webkit-transform: scale(1.1);
+       transform: scale(1.1);
+     }
+     50% {
+       -webkit-transform: scale(0.8);
+       transform: scale(0.8);
+     }
+     100% {
+       -webkit-transform: scale(1);
+       transform: scale(1);
+     }
+
+    }
+
+    @-ms-keyframes "pulse2" {
+     0% {
+       -ms-transform: scale(1.1);
+       transform: scale(1.1);
+     }
+     50% {
+       -ms-transform: scale(0.8);
+       transform: scale(0.8);
+     }
+     100% {
+       -ms-transform: scale(1);
+       transform: scale(1);
+     }
+
+    }
+
+
+    .gameover{
+      position:fixed;
+      z-index:100000;
+      left:0; top:0; 
+      bottom:0; 
+      right:0; 
+      background-color:rgba(0,0,0,0.8);
+      animation:gameover 3s linear forwards;
+      font-size:80px; 
+      font-family: 'Pacifico';
+      color:white; 
+      font-weight:bold;
+      opacity: 1; 
+      text-align:center; 
+      text-indent:0;  
+      line-height:500px;
+    }
+
+    @keyframes gameover{
+    0%{bottom:100%;}
+    50%{bottom:50%;}
+    100%{bottom:0%;}
+    }
+
+
+
+    </style>
+
+
         <script>
             var ballno = Math.floor(Math.random() * 11)+1;
             var concreteno=Math.floor(Math.random() * 4)+1;
@@ -356,7 +554,10 @@
     <div id='level'>
         Level 1
     </div>
-    
+    <div><span id="time"></span> </div>
+    <div><span id="gameovertag"></span> </div>
+
+
     </body>
 
 </html>
