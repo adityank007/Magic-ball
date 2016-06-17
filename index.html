@@ -203,8 +203,8 @@
                 
                     case 'initialize':
                         maze = generateSquareMaze(mazeDimension);
-                        var dy = Math.floor(Math.random()*mazeDimension)
-                        var dx = Math.floor(Math.random()*mazeDimension)
+                        var dy = Math.floor(Math.random()*mazeDimension);
+                        var dx = Math.floor(Math.random()*mazeDimension);
                         maze[mazeDimension-1][mazeDimension-dy] = false;
                         createPhysicsWorld();
                         createRenderWorld();
