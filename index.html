@@ -150,7 +150,7 @@
                 // Take a time step.
                 wWorld.Step(1/60, 8, 3);
             }
-            
+             
 
             function updateRenderWorld() {
 
@@ -187,7 +187,9 @@
                 
                     case 'initialize':
                         maze = generateSquareMaze(mazeDimension);
-                        maze[mazeDimension-1][mazeDimension-2] = false;
+                        var dy = Math.floor(Math.random()*mazeDimension)
+                        var dx = Math.floor(Math.random()*mazeDimension)
+                        maze[mazeDimension-1][mazeDimension-dy] = false;
                         createPhysicsWorld();
                         createRenderWorld();
                         camera.position.set(1, 1, 5);
@@ -215,7 +217,7 @@
                         // Check for victory.
                         var mazeX = Math.floor(ballMesh.position.x + 0.5);
                         var mazeY = Math.floor(ballMesh.position.y + 0.5);
-                        if (mazeX == mazeDimension && mazeY == mazeDimension - 2) { 
+                        if (mazeX >mazeDimension || mazeY>mazeDimension) { 
                             mazeDimension += 2;
                             gameState = 'fade out';
                         }

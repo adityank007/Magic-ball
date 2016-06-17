@@ -1,6 +1,6 @@
 function generateSquareMaze(dimension) {
 
-    function iterate(field, x, y) {
+    function iterate(field, x, y,dx,dy) {
         field[x][y] = false;
         while(true) {
             directions = [];
@@ -16,12 +16,29 @@ function generateSquareMaze(dimension) {
             if(y < field.dimension - 2 && field[x][y+2] == true) {
                 directions.push([0, 1]);
             }
+            // if(x>1 && y>1 && field[x-2][y-2]==true){
+            //     directions.push([-1,-1]);
+            // }
+            // if(x<field.dimension-2 && y < field.dimension-2 && field[x+2][y+2] == true){
+            //     directions.push([1,1]);
+            //}
             if(directions.length == 0) {
                 return field;
             }
             dir = directions[Math.floor(Math.random()*directions.length)];
+            mod = Math.floor(Math.random()*2);
+            for(i=0 ;i<directions.length&&mod%2==0;i++)
+            {
+                tmp = directions[i];
+                if(tmp[0]!=0&& dx==0  ||  tmp[1]!=0&& dy==0)
+                {
+                    dir=directions[i];
+                    break;
+                }
+            }
+
             field[x+dir[0]][y+dir[1]] = false;
-            field = iterate(field, x+dir[0]*2, y+dir[1]*2);
+            field = iterate(field, x+dir[0]*2, y+dir[1]*2,dir[0],dir[1]);
         }
     }
 
