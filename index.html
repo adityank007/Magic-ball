@@ -411,10 +411,24 @@
                         var dy = Math.floor(Math.random()*mazeDimension);
                         var dx = Math.floor(Math.random()*mazeDimension);
 
+                        mod = Math.floor(Math.random()*2);
+
+                        if(mod%2)
+                        {
                         finalPositionX = mazeDimension-1
                         finalPositionY = mazeDimension-dy-1
                         maze[finalPositionX][finalPositionY] = false;
                         maze[finalPositionX-1][finalPositionY] = false;
+                        }
+
+                        else
+                        {
+                        finalPositionX = mazeDimension-dx-1
+                        finalPositionY = mazeDimension-1
+                        maze[finalPositionX][finalPositionY] = false;
+                        maze[finalPositionX][finalPositionY-1] = false;
+                        }
+
                         createrandomtheme();
 
                         
