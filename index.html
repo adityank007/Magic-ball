@@ -410,11 +410,15 @@
                         maze = generateSquareMaze(mazeDimension);
                         var dy = Math.floor(Math.random()*mazeDimension);
                         var dx = Math.floor(Math.random()*mazeDimension);
+<<<<<<< HEAD
                         finalPositionX = mazeDimension-1
                         finalPositionY = mazeDimension-dy-1
                         maze[finalPositionX][finalPositionY] = false;
                         maze[finalPositionX-1][finalPositionY] = false;
                         createrandomtheme();
+
+                        
+>>>>>>> master
                         createPhysicsWorld();
                         createRenderWorld();
                         camera.position.set(1, 1, 5);
