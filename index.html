@@ -2,6 +2,8 @@
 
     <head>
     
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Butcherman+Caps" />
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Luckiest+Guy" />
         <script src='Box2dWeb.min.js'></script>
         <script src="Three.js"></script>
         <script src="keyboard.js"></script>
@@ -9,7 +11,10 @@
         <script src="maze.js"></script>
 
         <script>
-
+            var ballno = Math.floor(Math.random() * 11)+1;
+            var concreteno=Math.floor(Math.random() * 4)+1;
+            var brickno =Math.floor(Math.random() * 10)+1;
+            console.log(ballno, concreteno,brickno);
             var camera         = undefined, 
                 scene          = undefined, 
                 renderer       = undefined, 
@@ -23,9 +28,9 @@
                 ballMesh       = undefined,
                 ballRadius     = 0.25,
                 keyAxis        = [0, 0],
-                ironTexture    = THREE.ImageUtils.loadTexture('/ball.png'),
-                planeTexture   = THREE.ImageUtils.loadTexture('/concrete.png'),
-                brickTexture   = THREE.ImageUtils.loadTexture('/brick.png'),
+                ironTexture    = THREE.ImageUtils.loadTexture('balls/'+ballno+'.png'),
+                planeTexture   = THREE.ImageUtils.loadTexture('concretes/'+concreteno+'.png'),
+                brickTexture   = THREE.ImageUtils.loadTexture('bricks/'+brickno+'.png'),
                 gameState      = undefined,
 
             // Box2D shortcuts
@@ -105,6 +110,16 @@
                 light.position.set(1, 1, 1.3);
                 scene.add(light);
                 
+                
+
+                var light1= new THREE.PointLight(0xff0000, 1,5,0.1);
+                light1.position.set(1, 1, 1.3);
+                scene.add(light1);
+
+                var light1= new THREE.PointLight(0xff0000, 1,5,0.1);
+                light1.position.set(mazeDimension-1, mazeDimension-2, 1.3);
+                scene.add(light1);
+
                 // Add the ball.
                 g = new THREE.SphereGeometry(ballRadius, 32, 16);
                 m = new THREE.MeshPhongMaterial({map:ironTexture});
@@ -123,9 +138,10 @@
                 scene.add(mazeMesh);
 
                 // Add the ground.
-                g = new THREE.PlaneGeometry(mazeDimension*10, mazeDimension*10, mazeDimension, mazeDimension);
-                planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping;
-                planeTexture.repeat.set(mazeDimension*5, mazeDimension*5);
+                g = new THREE.PlaneGeometry(mazeDimension*1, mazeDimension*1, mazeDimension, mazeDimension);
+                // planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping;
+                // planeTexture.repeat.set(mazeDimension*15, mazeDimension*15);
+
                 m = new THREE.MeshPhongMaterial({map:planeTexture});
                 planeMesh = new THREE.Mesh(g, m);
                 planeMesh.position.set((mazeDimension-1)/2, (mazeDimension-1)/2, 0);
@@ -294,7 +310,7 @@
 
                 // Bind keyboard and resize events.
                 KeyboardJS.bind.axis('left', 'right', 'down', 'up', onMoveKey);
-                KeyboardJS.bind.axis('h', 'l', 'j', 'k', onMoveKey);
+                KeyboardJS.bind.axis('a', 'd', 's', 'w', onMoveKey);
                 $(window).resize(onResize);
                 
 
@@ -316,28 +332,14 @@
                 background: black;
                 margin: 0;
                 padding: 0;
+                width: 100%;
+                height: 100%;
                 font-family: 'Helvetica';
             }
             
-            #instructions {
-                background-color: rgba(0,0,0,0.75);
-                color: white;
-                text-align: center;
-                padding: 32px;
-                margin: 0px;
-                display: inline;
-                border: 2px solid white;
-            }
-
-            #help {
-                position: absolute;
-                left: 0px;
-                bottom: 0px;
-                padding: 4px;
-                color: white;   
-            }
-
             #level {
+                font-family: "Luckiest Guy";
+                font-size: 50px;
                 position: absolute;
                 left: 0px;
                 top: 0px;
@@ -351,19 +353,6 @@
     </head>
     
     <body>
-    
-    <div id='instructions'>
-        How to play Astray:
-        <br><br>
-        Use the arrow keys to move the ball and find the exit to the maze.
-        <br><br>
-        Vim trainees: h, j, k, l
-    </div>
-    
-    <div id='help'>
-        Hold down the 'I' key for instructions.
-    </div>
-
     <div id='level'>
         Level 1
     </div>
